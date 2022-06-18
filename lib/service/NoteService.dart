@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart' as http;
+import 'package:web_socket_channel/io.dart';
 
 
 import '../model/Note.dart';
@@ -26,9 +27,9 @@ class NoteService extends ChangeNotifier{
     _web3cient = Web3Client(
       _rpcUrl,
       http.Client(),
-      // socketConnector: () {
-      //   return IOWebSocketChannel.connect(_wsUrl).cast<String>();
-      // },
+      socketConnector: () {
+        return IOWebSocketChannel.connect(_wsUrl).cast<String>();
+      },
     );
   }
 
